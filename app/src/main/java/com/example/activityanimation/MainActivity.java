@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, Main2Activity.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.diagonaltranslate,R.anim.alpha);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
         });
     }
