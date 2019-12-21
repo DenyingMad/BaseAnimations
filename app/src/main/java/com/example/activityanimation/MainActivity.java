@@ -10,8 +10,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
+    LinearLayout linearLayout;
     ImageView bigIcon;
     ImageView smallIcon;
     Button button;
@@ -20,18 +22,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bigIcon = findViewById(R.id.bigIcon);
-        smallIcon = findViewById(R.id.smallIcon);
         button = findViewById(R.id.button);
-        Animation animRotateIn_icon = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        linearLayout = findViewById(R.id.screen2);
+        final Animation animRotateIn_icon = AnimationUtils.loadAnimation(this, R.anim.rotate);
         bigIcon.startAnimation(animRotateIn_icon);
+        linearLayout.setOnTouchListener(new OnSwipeTouchListener(this){
+            @Override
+            public void onSwipeUp() {
+                Intent i = new Intent (MainActivity.this, Main2Activity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_up_in, R.anim.slide_up_out);
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Main2Activity.class);
-                startActivity(i);
-                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                bigIcon.startAnimation(animRotateIn_icon);
             }
         });
+
     }
     @Override
     protected void onResume(){
