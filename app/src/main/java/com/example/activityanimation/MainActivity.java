@@ -47,5 +47,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         Animation animRotateIn_big = AnimationUtils.loadAnimation(this, R.anim.rotate);
         bigIcon.startAnimation(animRotateIn_big);
+        overridePendingTransition(R.anim.slide_down_in, R.anim.slide_down_out);
     }
 }
